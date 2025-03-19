@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="container">
+    <h1>Welcome</h1>
+    <form action="{{url_for('register')}}" method="post">
+        <input type="text" name="username" placeholder="username" class="input-field">
+        <input type="password" name="password" placeholder="password" class="input-field">
+        <select name="language" class="input-field">
+            <option value="EN-GB">English</option>
+            <option value="SV">Swedish</option>
+            <option value="ES">Spanish</option>
+            <option value="FR">French</option>
+            <option value="DE">German</option>
+            <option value="ZH">Chinese</option>
+            <option value="AR">Arabic</option>
+            <option value="JA">Japanese</option>
+            <option value="RU">Russian</option>
+            <option values="NL">Dutch</option>
+            <!-- Add more languages as needed -->
+        </select>
+        <input type="submit" value="Register" class="btn btn-login" autocomplete="off">
+    </form>
+</div>
+{% endblock  %}

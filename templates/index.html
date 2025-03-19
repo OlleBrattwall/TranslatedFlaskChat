@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="container">
+    <h1>Welcome</h1>
+    <form action="{{ url_for('login')}}" method="get">
+        <input type="submit" value="Login" class="btn btn-login" />
+    </form>
+    <form action="{{ url_for('register')}}" method="get">
+        <input type="submit" value="Register" class="btn btn-register" />
+    </form>
+</div>
+
+
+{% endblock  %}

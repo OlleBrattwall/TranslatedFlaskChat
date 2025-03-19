@@ -1,0 +1,201 @@
+.message-box {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: stretch;
+}
+
+body {
+    background-color: rgb(59, 58, 58);
+    color:whitesmoke;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    margin:0 ; 
+    padding:0;
+}
+
+.Dashboard {
+    max-width: 100%;
+    margin: 100px auto;
+    padding: 20px;
+    text-align: center;
+    background:rgb(150, 150, 150);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Dashboard h1 {
+    position: absolute;
+    top: 20px;  
+    left: 20px;
+    font-size: 32px; 
+    font-weight: bold; 
+    color: white; 
+    margin: 0;
+}
+
+.Dashboard p {
+    max-width: 100%;
+    font-size: 32px;
+    margin: 50px auto; 
+    text-align: center;
+    position: relative; 
+}
+
+.Dashboard ul li {
+    list-style-type: none;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.create_chat_container {
+    max-width: 100%;
+    margin: 100px auto;
+    padding: 20px;
+    text-align: center;
+    background:rgb(150, 150, 150);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    text-align: center;
+    background:rgb(150, 150, 150);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* General button styling */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
+    text-decoration: None;
+}
+
+
+.btn-login {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #45a049;
+}
+
+
+.btn-register {
+    background-color: #007bff; 
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-register:hover {
+    background-color: #0056b3; 
+}
+
+
+.btn-create-chat {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.btn-create-chat:hover {
+    background-color: #45a049;
+}
+
+
+.btn-join-chat {
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.btn-join-chat:hover {
+    background-color: #0056b3
+;
+}
+
+.btn-logout {
+    background-color: #f44336; 
+    color: white;
+    position: absolute;
+    top: 20px;  
+    right: 20px; 
+}
+.btn-logout:hover {
+    background-color: #b30300;
+}
+
+.form-join-chat {
+    margin: 20px 0;
+}
+
+.input-room-code {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.input-room-code:focus {
+    outline: none;
+    border-color: #007bff
+;
+}
+
+
+/* For create_chat.html */
+.create-chat-container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+
+.input-field2 {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+.btn-create-chat {
+    background-color: #27ae60; /* Green */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-create-chat:hover {
+    background-color: #219150;
+}

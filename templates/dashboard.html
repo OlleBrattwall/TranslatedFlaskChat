@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="Dashboard">
+    <h1>Welcome, {{ username }}</h1>
+    <p>Dashboard</p>
+
+    <h2>Your Chats</h2>
+    <ul>
+        {% for chat in chats %}
+            <li>
+                {{ chat.name }} - <a href="{{ url_for('join_chat', chat_id=chat.session_id) }}" class="btn btn-join-chat">Join Chat</a>
+            </li>
+        {% else %}
+            <p>You haven't joined any chats yet.</p>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('join_existing_chat') }}" method="POST" class="form-join-chat">
+        <input type="text" name="roomCode" required placeholder="Room Code" class="input-room-code">
+        <button type="submit" class="btn btn-join-chat">Join Chat</button>
+    </form>
+    <br>
+    <a href="{{ url_for('create_chat') }}" class="btn btn-create-chat">Create a New Chat</a><br>
+
+    <a href="{{ url_for('logout') }}" class="btn btn-logout">Logout</a>
+</div>
+{% endblock %}

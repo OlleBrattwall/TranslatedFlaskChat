@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_for_inchat.css') }}">
+{%endblock%}
+
+{% block body %}
+    <h1>Chat: {{ chat.name }}</h1>
+    <h2>Room Code: {{ chat.roomCode }}</h2>
+
+    
+    <a  class="btn btn-home"href="{{ url_for('dashboard') }}">Home</a>
+    <a class="btn btn-leave" href="{{ url_for('leave', chat_id=chat.session_id) }}">Leave chat</a>
+
+    <h3>Members:</h3>
+    <ul>
+        {% for user in chat.users %}
+            <li><strong>{{ user.username }}</strong>
+                <em>{{ user.language }}</em>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <div id="message-box" class="message-box">
+    {% for message in messages %}
+    {% if user.language == message["original_language"] %} 
+        <p><strong>{{ message["username"] }}:</strong> {{ message["original_content"] }}</p> 
+    {% else %}
+        <p><strong>{{ message["username"] }}:</strong> {{ message["translations"].get(user.language, message["original_content"]) }}</p>
+    {% endif %}
+    {% endfor %}
+    </div>
+    
+    <input type="text" id="message-input" placeholder="Type a message..." class="message-input" />
+    
+    <button id="send-button" class="send-button">Send</button>
+    <br>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io.connect("http://" + document.domain + ":" + location.port);
+        let userPreferredLanguage = "{{ user.language }}";
+
+        socket.on("connect", () => {
+            console.log("Socket connected, joining room...");
+            socket.emit("join", { chat_id: "{{ chat.session_id }}" });
+        });
+
+        const sendButton = document.getElementById("send-button");
+        const messageInput = document.getElementById("message-input");
+        const chatBox = document.getElementById("message-box");
+
+        // Send Button
+        sendButton.onclick = () => {
+            const message = messageInput.value.trim();
+            if (message) {
+                socket.emit("message", {
+                    chat_id: "{{ chat.session_id }}",
+                    content: message
+                });
+                messageInput.value = "";
+            }
+        };
+
+        messageInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) { 
+                e.preventDefault(); 
+                sendButton.click();
+            }
+        });
+        // "Enter" key
+       messageInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) { 
+                e.preventDefault(); 
+                const message = messageInput.value.trim();
+                if (message) {
+                    socket.emit("message", {
+                        chat_id: "{{ chat.session_id }}",
+                        content: message
+                    });
+                    messageInput.value = "";
+                }
+            }
+        });
+
+  
+       socket.on("new_message", (data) => {
+            console.log("message recieved")
+            if (data.username && data.original_content && data.translated_content) {
+                const chatBox = document.getElementById("message-box");
+
+                let messageContent ="";
+
+                if (userPreferredLanguage === data.sender_language){
+                    messageContent = data.original_content;
+                }else{
+                    messageContent = data.translated_content[userPreferredLanguage];
+                }
+                chatBox.innerHTML += `<p><strong>${data.username}:</strong> ${messageContent}</p>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }); 
+
+        function scrollToBottom(){
+            const chatBox = document.getElementById("message-box");
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        window.onload = () => { scrollToBottom(); };
+    </script>
+
+
+{% endblock %}

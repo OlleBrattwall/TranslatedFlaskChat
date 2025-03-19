@@ -1,0 +1,54 @@
+
+.message-box {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    color: black;
+}
+p{
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+.message-input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-leave{
+    background-color: #f44336 ;
+    color: white;
+    position: absolute;
+    top: 20px;  
+    right: 20px; 
+}
+.btn-leave:hover{
+    background-color: #b30300;
+}
+.btn-home {
+    background-color: #007bff; 
+    color: white;
+    position: absolute;
+    top: 20px;  
+    right: 150px; 
+}
+.btn-home:hover {
+    background-color: #0056b3;
+}
+.send-button {
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    text-decoration: None;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+

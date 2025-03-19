@@ -1,0 +1,4 @@
+flaskChat/
+__pychache__/
+instance/
+.env

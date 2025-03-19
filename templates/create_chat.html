@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="create_chat_container">
+    <h1>Create a New Chat</h1>
+    <form method="POST">
+        <label for="chat_name">Chat Name:</label>
+        <input type="text" name="chat_name" required class="input-field2"><br>
+        <button type="submit" class="btn btn-create-chat">Create Chat</button>
+    </form>
+</div>
+{% endblock %}
