@@ -7,15 +7,30 @@
     background-color: #f9f9f9;
     margin-bottom: 10px;
     color: black;
+    width: 50%;
+    margin-left: 25%;
+}
+hr{
+    margin-bottom: 35px;
 }
 p{
     margin-bottom: 0px;
     margin-top: 5px;
 }
-.message-input {
-    width: 80%;
+.sendMessage{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    height: 40px;
+    display: flex;
     padding: 10px;
-    margin-bottom: 10px;
+    padding-top: 0%;
+}
+.message-input {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-right: 10px;
 }
 
 .btn-leave{
@@ -39,6 +54,7 @@ p{
     background-color: #0056b3;
 }
 .send-button {
+    white-space: nowrap;
     padding: 10px 15px;
     cursor: pointer;
     background-color: #007bff;
@@ -51,4 +67,20 @@ p{
 .send-button:hover {
     background-color: #0056b3;
 }
+.message-box, .sendMessage{
+    margin: 0 auto;
+    margin-top: 10px;
+    max-width: 650px;
+}
+.currentUser{
+   /* color:rgb(0, 247, 255);*/
+    text-decoration: underline;
+    text-decoration-color:whitesmoke ;
 
+}
+@media (max-width: 768px) {
+    .message-box, .sendMessage {
+        width: 80%;
+        margin-left: 10%;
+    }
+}

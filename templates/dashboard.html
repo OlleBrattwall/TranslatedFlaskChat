@@ -8,8 +8,8 @@
     <h2>Your Chats</h2>
     <ul>
         {% for chat in chats %}
-            <li>
-                {{ chat.name }} - <a href="{{ url_for('join_chat', chat_id=chat.session_id) }}" class="btn btn-join-chat">Join Chat</a>
+            <li class="chatList">
+                {{ chat.name }} - <a href="{{ url_for('join_chat', chat_id=chat.session_id) }}" class="btn btn-join-chat">Enter</a>
             </li>
         {% else %}
             <p>You haven't joined any chats yet.</p>

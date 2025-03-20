@@ -15,9 +15,15 @@
     <h3>Members:</h3>
     <ul>
         {% for user in chat.users %}
-            <li><strong>{{ user.username }}</strong>
+            {%if user.username == session["username"] %}
+            <li class="currentUser"><strong>{{ user.username }}</strong>
+                <em><strong>{{ user.language }}</strong></em>
+            </li>
+            {%else%}
+            <li>{{ user.username }}
                 <em>{{ user.language }}</em>
             </li>
+            {%endif%}
 
         {% endfor %}
     </ul>
@@ -33,10 +39,11 @@
     {% endif %}
     {% endfor %}
     </div>
-    
+    <div class="sendMessage">
     <input type="text" id="message-input" placeholder="Type a message..." class="message-input" />
     
     <button id="send-button" class="send-button">Send</button>
+    </div>
     <br>
     
 

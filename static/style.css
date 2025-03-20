@@ -10,7 +10,6 @@
     width: 80vw;
     align-items: stretch;
 }
-
 body {
     background-color: rgb(59, 58, 58);
     color:whitesmoke;
@@ -18,9 +17,12 @@ body {
     margin:0 ; 
     padding:0;
 }
+.chatList{
+    font-size: 21px;
 
+}
 .Dashboard {
-    max-width: 100%;
+    max-width: 80%;
     margin: 100px auto;
     padding: 20px;
     text-align: center;
@@ -54,7 +56,7 @@ body {
 }
 
 .create_chat_container {
-    max-width: 100%;
+    max-width: 80%;
     margin: 100px auto;
     padding: 20px;
     text-align: center;
