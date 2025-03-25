@@ -10,17 +10,17 @@
 
     
     <a  class="btn btn-home"href="{{ url_for('dashboard') }}">Home</a>
-    <a class="btn btn-leave" href="{{ url_for('leave', chat_id=chat.session_id) }}">Leave chat</a>
+    <a id="leaveBtn" class="btn btn-leave" href="{{ url_for('leave', chat_id=chat.session_id) }}">Leave chat</a>
 
     <h3>Members:</h3>
-    <ul>
+    <ul id="memberList">
         {% for user in chat.users %}
             {%if user.username == session["username"] %}
-            <li class="currentUser"><strong>{{ user.username }}</strong>
+            <li id="{{ user.username }}" class="currentUser"><strong>{{ user.username }}</strong>
                 <em><strong>{{ user.language }}</strong></em>
             </li>
             {%else%}
-            <li>{{ user.username }}
+            <li id="{{ user.username }}">{{ user.username }}
                 <em>{{ user.language }}</em>
             </li>
             {%endif%}
@@ -61,7 +61,7 @@
         const sendButton = document.getElementById("send-button");
         const messageInput = document.getElementById("message-input");
         const chatBox = document.getElementById("message-box");
-
+        const leave = document.getElementById("leaveBtn")
         // Send Button
         sendButton.onclick = () => {
             const message = messageInput.value.trim();
@@ -73,6 +73,10 @@
                 messageInput.value = "";
             }
         };
+
+        leave.onclick = () =>{
+            socket.emit('leave', { chat_id: "{{ chat.session_id }}" });
+        }
 
         messageInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter" && !e.shiftKey) { 
@@ -112,6 +116,32 @@
                 chatBox.scrollTop = chatBox.scrollHeight;
             }
         }); 
+
+        socket.on("user_joined", (data) =>{
+            if(data.username && data.lang){
+                if(document.getElementById(data.username)){
+                console.log("Already in list")
+                }
+                else{
+                    const memlist = document.getElementById("memberList")
+                    memlist.innerHTML += `<li id="${data.username}">${data.username} <em>${data.lang}</em></li>`;
+                }
+
+            }
+        });
+
+
+        socket.on("user_left", (data) =>{
+            console.log("logo");
+            if(data.username){
+                if(document.getElementById(data.username)){
+                    const userElemet = document.getElementById(data.username);
+                    userElemet.remove();
+                }
+               
+
+            }
+        });
 
         function scrollToBottom(){
             const chatBox = document.getElementById("message-box");

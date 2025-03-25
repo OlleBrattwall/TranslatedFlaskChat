@@ -28,7 +28,7 @@ def handle_join(data):
 
     join_room(str(chat_id))
     print(f"{user.username} joined room {chat.roomCode}")
-    emit("user_joined", {"username": user.username}, room=chat_id)
+    emit("user_joined", {"username": user.username, "lang": user.language}, room=chat_id)
 
 #recieves message from the client
 @socketio.on("message")
@@ -131,10 +131,13 @@ def handle_leave(data):
 
     leave_room(chat.roomCode)
     print(f"{user.username} left room {chat.roomCode}")
-    emit("user_left", {"username": user.username}, room=chat.roomCode)
+    emit("user_left", {"username": user.username}, room=chat_id)
 
 
 @socketio.on("disconnect")
-def handle_disconnect():
+def handle_disconnect(data):
+   # print("varmkorv: ",data)
+    #chat = Chat.query.get(chat_id)
     username = session.get('username', 'Unknown user')
-    print(f"{username} disconnected")
+  #  print(f"{username} disconnected")
+    #emit("user_left", {"username": username}, room=chat.roomCode)
